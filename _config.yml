@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "Site Title"
+title                    : "超级土鸡蛋"
 title_separator          : "-"
-name                     : "Your Name"
-description              : "An amazing website."
+name                     : "老李"
+description              : "一个简单的博客"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -43,8 +43,7 @@ staticman:
     date:
       type               : "date"
       options:
-        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
-atom_feed:
+        format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds" atom_feed:
   path                   : # blank (default) uses feed.xml
 
 # SEO Related
