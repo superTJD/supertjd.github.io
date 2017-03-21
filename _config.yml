@@ -76,10 +76,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "老李"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
+  bio              : "一个无可奈何的人"
+  location         : "Braunschweig, Germany"
   email            :
   uri              :
   bitbucket        :
