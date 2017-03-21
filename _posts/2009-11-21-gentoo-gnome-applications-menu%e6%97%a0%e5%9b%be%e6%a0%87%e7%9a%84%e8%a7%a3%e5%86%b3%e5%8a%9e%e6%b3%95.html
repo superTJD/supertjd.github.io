@@ -1,0 +1,24 @@
+---
+layout: post
+title: gentoo gnome applications menu无图标的解决办法
+date: 2009-11-21 22:57:59.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>emerge gnome-light没有安装gnome-menus并且配置文件的文件名也有点问题<br />
+解决办法:</p>
+<p>emerge gnome-menus<br />
+cd /etc/xdg/menus/<br />
+mv gnome-applications.menu applications.menu</p>

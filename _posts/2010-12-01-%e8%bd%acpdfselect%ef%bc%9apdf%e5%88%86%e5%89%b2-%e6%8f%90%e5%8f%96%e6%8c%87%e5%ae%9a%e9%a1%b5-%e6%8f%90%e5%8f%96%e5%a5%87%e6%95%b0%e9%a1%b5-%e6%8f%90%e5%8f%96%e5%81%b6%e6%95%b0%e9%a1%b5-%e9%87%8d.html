@@ -1,0 +1,52 @@
+---
+layout: post
+title: "[转]pdfselect：PDF 分割 提取 奇数页 偶数页 逆向排序"
+date: 2010-12-01 22:16:35.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Copy
+tags: []
+meta:
+  _edit_last: '1'
+  _wp_old_slug: ''
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>PDFSELECT1.1<br />
+Usage: pdfselect [options] infile [outfile]<br />
+Options:<br />
+-p N, –pages N         Intervals of pages to be selected,if N=0 ,the inFile wil<br />
+l be split to many one page pdf to outFile driver.<br />
+-q, –quiet             Do not print progress messages.<br />
+-e, –even              Select even pages It may be used in conjunction with the<br />
+ other page selection options to select the even pages from a range of pages.<br />
+-o, –odd               Select odd pages. It may be used in conjunction with the<br />
+ other page selection options to select the even pages from a range of pages.<br />
+-r, –reverse           The -r option causes pdfselect to output the selected pa<br />
+ges in reverse order.<br />
+-h, –help              Print this message and exit.<br />
+-V, –version           Show version number.</p>
+<p>Example:<br />
+Split PDF:pdfselect -p 0 c:\a.pdf d:\<br />
+(分割一个给定的PDF）<br />
+Reverse PDF:pdfselect c:\a.pdf c:\b..pdf<br />
+（对一个给定的PDF进行逆向排序输出）<br />
+Extract given pages:pdfselect -p 2-3,8-7 c:\a.pdf c:\b..pdf<br />
+（从给定PDF中提取指定页）<br />
+Extract given pages and reverse it:pdfselect -r -p 5,2-3,8-7 c:\a.pdf c:\b..pdf<br />
+（从给定PDF中提取指定页，并进行逆向排序）<br />
+Extract odd pages:pdfselect -o c:\a.pdf c:\b..pdf<br />
+（提取给定PDF的奇数页）<br />
+Extract odd pages and reverse it:pdfselect -r -o c:\a.pdf c:\b..pdf<br />
+（提取给定PDF的奇数页，并进行逆向排序）<br />
+Extract even pages:pdfselect -e c:\a.pdf c:\b..pdf<br />
+（提取给定PDF的偶数页）<br />
+Extract even pages and reverse it:pdfselect -r -e c:\a.pdf c:\b..pdf<br />
+（提取给定PDF的偶数页，并进行逆向排序）</p>
+<p>From:<a href="http://blog.donews.com/rocsky/archive/2005/07/26/481030.aspx">http://blog.donews.com/rocsky/archive/2005/07/26/481030.aspx</a></p>

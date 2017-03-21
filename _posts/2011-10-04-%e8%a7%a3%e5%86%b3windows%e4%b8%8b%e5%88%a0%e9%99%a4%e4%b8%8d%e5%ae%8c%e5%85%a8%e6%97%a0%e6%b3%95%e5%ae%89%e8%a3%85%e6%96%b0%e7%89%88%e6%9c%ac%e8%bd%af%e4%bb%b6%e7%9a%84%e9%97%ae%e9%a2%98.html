@@ -1,0 +1,31 @@
+---
+layout: post
+title: 解决Windows下删除不完全无法安装新版本软件的问题
+date: 2011-10-04 16:13:10.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Windows
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>遇到LabVIEW不能安装的问题，总是提示旧版本删除不完全的问题，在搜索解决方法时，顺带解决了以前Evernote不能升级的问题。</p>
+<p>一般新版本安装要求先卸载旧版本，但是旧版本又没有完全卸载，这样就进入了一个死循环。解决方法是直接用工具清除MSI安装信息。在闲逛中发现了一个从Windows 9X和2000时代的工具，但是莫名奇妙在我的Windows 7 x64上依然能够使用，现在真的觉得Windows的程序员在解决兼容性问题上有多苦逼了……接下来进入正题：</p>
+<p>下载又微又软的：msicuu2.exe 貌似官网已经没有提供，自行搜索<br />
+1.安装后按照readme操作，9x和2000有不同的.exe，改名之<br />
+2.windows7的当然选2000的.exe<br />
+3.在开始菜单里找到msicuu.exe运行之<br />
+4.选择有问题的软件，清理之</p>
+<p>ps. NI自己有个 msiBlast.exe用以清除安装信息，可用性未知……</p>
+<p>&nbsp;</p>
+<p>参考文献：<br />
+1. How do I uninstall Office 2003, Office 2007 or Office 2010 suites if I cannot uninstall it from Control Panel?<br />
+<a href="http://support.microsoft.com/kb/290301">http://support.microsoft.com/kb/290301</a></p>

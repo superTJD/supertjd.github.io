@@ -1,0 +1,35 @@
+---
+layout: post
+title: 解决ubuntu8.04 LTS mldonkey下载的中文显示问题
+date: 2009-02-09 16:33:19.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>mldonkey下载时显示中文正常，而最终下载的文件中文名下划线的问题是个常见问题<br />
+google了N次，越看越混乱，最终通过自己的思考与尝试，解决方法非常简单</p>
+<p>修改/var/lib/locales/supported.d/local<br />
+en_US.UTF-8 UTF-8<br />
+zh_CN.UTF-8 UTF-8<br />
+zh_CN.GBK GBK<br />
+zh_CN GB2312</p>
+<p>运行locale-gen</p>
+<p>在/etc/init.d/mldonkey-server<br />
+首行前加上<br />
+export LANG=zh_CN.UTF-8<br />
+export LC_ALL=zh_CN.UTF-8</p>
+<p>重启mldonkey<br />
+sudo /etc/init.d/mldonkey-server stop<br />
+sudo /etc/init.d/mldonkey-server start</p>
+<p>我这里的配置文件可能有问题，竟然/etc/init.d/mldonkey-server restart不能重启</p>

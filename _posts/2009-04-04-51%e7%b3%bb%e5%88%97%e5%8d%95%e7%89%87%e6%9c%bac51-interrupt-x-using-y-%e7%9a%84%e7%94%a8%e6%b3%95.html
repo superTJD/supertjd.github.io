@@ -1,0 +1,30 @@
+---
+layout: post
+title: 51系列单片机C51 interrupt x using y 的用法
+date: 2009-04-04 20:11:18.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Microcontroller
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>interrupt   x    using   y<br />
+跟在interrupt   后面的x 指的是中断号，就是说这个函数对应第几个中断端口，一般在51中<br />
+0   外部中断0<br />
+1   定时器0<br />
+2   外部中断1<br />
+3   定时器1<br />
+4   串行中断<br />
+其它的根据相应得单片机有自己的含义，实际上c在编译的时候就是把你这个函数的入口地址放到这个对应中断的跳转地址<br />
+  using   y   这个y 是这个中断函数使用的那个寄存器组。51里面一般有4个   r0   --   r7寄存器，如果你的中断函数和别的程序用的不是同一个寄存器组则进入中断的时候就不会将寄存器组压入堆栈，返回时也不会弹出来节省代码和时间</p>
+<p>引用：http://blog.chinaunix.net/u/22711/showart_263879.html<br />
+略作校对修改</p>

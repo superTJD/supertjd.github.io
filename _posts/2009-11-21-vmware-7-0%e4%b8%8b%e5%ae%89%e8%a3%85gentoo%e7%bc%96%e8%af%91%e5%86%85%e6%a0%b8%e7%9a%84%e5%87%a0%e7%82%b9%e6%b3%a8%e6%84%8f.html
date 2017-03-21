@@ -1,0 +1,42 @@
+---
+layout: post
+title: VMWare 7.0下安装gentoo编译内核的几点注意
+date: 2009-11-21 18:49:28.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>1.第一次编译内核时没有把LSI Logic的驱动选上，结果启动时出现如下错误：<br />
+VFS: Cannot open root device "sda3" or unknown-block(0,0)<br />
+Please append a correct "root=" boot option<br />
+Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)<br />
+解决方法：<br />
+编译内核时选上<br />
+Linux Kernel Configuration<br />
+-&gt; Device Drivers<br />
+-&gt; Fusion MPT device support<br />
+-&gt; Fusion MPT (base + ScsiHost) drivers<br />
+我用2.6.30内核有些细微差别，但是类似的选项选上后就没什么问题<br />
+附VMWare内核编译时的配置选项：<br />
+Device Drivers ---&gt;SCSI device support ---&gt;&lt;*&gt; SCSI disk support<br />
+Device Drivers ---&gt;SCSI device support ---&gt;SCSI low-level drivers ---&gt; &lt;*&gt; BusLogic SCSI support<br />
+Device Drivers ---&gt; Fusion MPT device support ---&gt; Fusion MPT (base + ScsiHost) drivers<br />
+Device Drivers ---&gt; Fusion MPT device support ---&gt; Fusion MPT misc device (ioctl) driver<br />
+这两个选模块方式：<br />
+Device Drivers ---&gt; USB support ---&gt;&lt;*&gt; USB Mass Storage support<br />
+Device Drivers ---&gt; Networking support ---&gt;Ethernet (10 or 100Mbit) ---&gt; &lt;*&gt; AMD PCnet32 PCI support</p>
+<p>2.为编译xorg-x11则要在/etc/make.conf的显卡设置<br />
+VIDEO_CARDS="vmware"<br />
+use flag也加上vmware<br />
+就可以自动为虚拟机的显卡安装合适的驱动</p>

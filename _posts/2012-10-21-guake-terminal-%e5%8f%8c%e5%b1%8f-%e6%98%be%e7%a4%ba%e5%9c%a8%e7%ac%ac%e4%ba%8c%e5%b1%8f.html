@@ -1,0 +1,61 @@
+---
+layout: post
+title: Guake Terminal 双屏 显示在第二屏
+date: 2012-10-21 06:31:52.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>在有双屏幕的时候，Guake Terminal总是显示在左边的屏幕上。而我，使用笔记本，习惯左边是扩展的大屏幕用来放文档，而termial在右边笔记本的屏幕上。需要一些Hacking或者说Debugging吧。</p>
+<p>打开/usr/lib/guake/guake.py文件，找到</p>
+<p><code>window_rect </code><code>=</code> <code>screen.get_monitor_geometry()</code></p>
+<div><code>total_width </code><code>=</code> <code>window_rect.width</code></div>
+<div><code>window_rect.height </code><code>=</code> <code>window_rect.height </code><code>*</code> <code>height </code><code>/</code> <code>100</code></div>
+<div><code>window_rect.width </code><code>=</code> <code>window_rect.width </code><code>*</code> <code>width </code><code>/</code> <code>100</code></div>
+<div></div>
+<div><code>if</code> <code>width &lt; total_width:</code></div>
+<div><code>    </code><code>if</code> <code>halignment </code><code>=</code><code>=</code> <code>ALIGN_CENTER:</code></div>
+<div><code>        </code><code>window_rect.x </code><code>=</code> <code>(total_width </code><code>-</code> <code>window_rect.width) </code><code>/</code> <code>2</code></div>
+<div><code>    </code><code>elif</code> <code>halignment </code><code>=</code><code>=</code> <code>ALIGN_LEFT:</code></div>
+<div><code>        </code><code>window_rect.x </code><code>=</code> <code>0</code></div>
+<div><code>    </code><code>elif</code> <code>halignment </code><code>=</code><code>=</code> <code>ALIGN_RIGHT:</code></div>
+<div><code>        </code><code>window_rect.x </code><code>=</code> <code>total_width </code><code>-</code> <code>window_rect.width</code></div>
+<div><code>window_rect.y </code><code>=</code> <code>0</code></div>
+<div><code>return</code> <code>window_rect</code></div>
+<div></div>
+<div>修改为：</div>
+<div><code>window_rect </code><code>=</code> <code>screen.get_monitor_geometry(</code><code>1</code><code>)</code></p>
+<div><code>total_width </code><code>=</code> <code>window_rect.width</code></div>
+<div><code>window_rect.height </code><code>=</code> <code>window_rect.height </code><code>*</code> <code>height </code><code>/</code> <code>100</code></div>
+<div><code>window_rect.width </code><code>=</code> <code>window_rect.width </code><code>*</code> <code>width </code><code>/</code> <code>100</code></div>
+<div></div>
+<div><code>if</code> <code>width &lt; total_width:</code></div>
+<div><code>    </code><code>if</code> <code>halignment </code><code>=</code><code>=</code> <code>ALIGN_CENTER:</code></div>
+<div><code>        </code><code>window_rect.x </code><code>+</code><code>=</code> <code>(total_width </code><code>-</code> <code>window_rect.width) </code><code>/</code> <code>2</code></div>
+<div><code>    </code><code>elif</code> <code>halignment </code><code>=</code><code>=</code> <code>ALIGN_LEFT:</code></div>
+<div><code>        </code><code>window_rect.x </code><code>+</code><code>=</code> <code>0</code></div>
+<div><code>    </code><code>elif</code> <code>halignment </code><code>=</code><code>=</code> <code>ALIGN_RIGHT:</code></div>
+<div><code>        </code><code>window_rect.x </code><code>+</code><code>=</code> <code>total_width </code><code>-</code> <code>window_rect.width</code></div>
+<div><code>window_rect.y </code><code>=</code> <code>0</code></div>
+<div><code>return</code> <code>window_rect</code></div>
+</div>
+<div></div>
+<div>重启Guake Terminal就大功告成了。</div>
+<div></div>
+<div>参考链接：</div>
+<div>1. <a href="http://www.dotmana.com/weblog/2011/02/guake-dual-screen-options/">http://www.dotmana.com/weblog/2011/02/guake-dual-screen-options/</a></div>
+<div>2. <a href="http://guake.org/ticket/201">http://guake.org/ticket/201</a></div>
+<div></div>
+<div></div>
+<p>&nbsp;</p>

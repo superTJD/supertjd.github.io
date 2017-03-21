@@ -1,0 +1,68 @@
+---
+layout: post
+title: latex中德语变音的处理
+date: 2010-11-07 08:44:27.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Technology
+tags: []
+meta:
+  _oembed_db6402c3274df9c6a253823939602994: "{{unknown}}"
+  _edit_last: '1'
+  _wp_old_slug: ''
+  _oembed_5ff4244cdbf9bb16f2d9d7d246dd0869: "{{unknown}}"
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>当然可以直接用\"a和{ss}来输入ä和ß未免过于麻烦<br />
+简便的方法可分为两种<br />
+1.使用ngerman宏包<br />
+导言区加入<br />
+\usepackage{ngerman}<br />
+使用 "a "s 输入ä和ß<br />
+优点：<br />
+可直接使用英语键盘输入德语，可以以习惯的方式输入特殊符号<br />
+缺点：<br />
+编辑器的拼写检查失效<br />
+从PDF文档中复制出来的是 "a  "s </p>
+<p>2.使用inputenc宏包<br />
+导言区加入</p>
+<pre name="”code”" class="”cpp”">
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+</pre>
+<p>源文件要使用ISO-8859-1编码保存（仅在windows系统）</p>
+<p>或：<br />
+\usepackage[ngerman]{babel}<br />
+\usepackage[T1]{fontenc}<br />
+\usepackage[utf8]{inputenc}<br />
+源文件使用UTF8编码保存（可跨操作系统）</p>
+<p>可直接使用德语键盘输入变音<br />
+优点：<br />
+可以使用编辑器的拼写检查<br />
+从PDF文档中复制出来的是变音字母<br />
+缺点：<br />
+必须要使用支持多编码的的编辑器，<br />
+特殊字符输入麻烦</p>
+<p>另：<br />
+可使用GNU recode工具，将ISO-8859-1或者UTF8含有变音字符的文本，变成ASCII编码的latex排版如\"a和\ss{}</p>
+<p>cat text_uml.tex | recode -d latin1..tex > text_asc.tex<br />
+或 cat text_uml.tex | recode -d utf8..tex > text_asc.tex</p>
+<p>Debian下使用 sudo apt-get install recode安装<br />
+Windows下二进制版本的下载地址<br />
+http://sourceforge.net/projects/unxutils/files/unxutils/current/UnxUtils.zip/download</p>
+<link type="text/css" rel="stylesheet" href="css/SyntaxHighlighter.css" />
+<script language="javascript" src="js/shCore.js"></script><br />
+<script language="javascript" src="js/shBrushCSharp.js"></script><br />
+<script language="javascript" src="js/shBrushXml.js"></script><br />
+<script language="javascript"><br />
+dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';<br />
+dp.SyntaxHighlighter.HighlightAll('code');<br />
+</script></p>

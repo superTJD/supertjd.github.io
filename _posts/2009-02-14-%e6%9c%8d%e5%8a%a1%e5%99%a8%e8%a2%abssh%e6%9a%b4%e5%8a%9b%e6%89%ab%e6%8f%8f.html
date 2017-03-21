@@ -1,0 +1,33 @@
+---
+layout: post
+title: 服务器被ssh暴力扫描
+date: 2009-02-14 23:23:00.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>今天看了下服务器的登录日志，发现有已经有4、5个ip扫描ssh通过暴力猜解密码，这可能和我偷懒没有改ssh默认的登录端口有关。抄一段日志：<br />
+Feb 14 09:37:14 dicken-server sshd[21615]: Invalid user jack from 211.172.232.127<br />
+Feb 14 09:37:14 dicken-server sshd[21615]: pam_unix(sshd:auth): check pass; user unknown<br />
+Feb 14 09:37:14 dicken-server sshd[21615]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser=<br />
+rhost=211.172.232.127<br />
+Feb 14 09:37:15 dicken-server sshd[21615]: Failed password for invalid user jack from 211.172.232.127 port 55458 ssh2<br />
+Feb 14 09:37:17 dicken-server sshd[21617]: Invalid user christopher from 211.172.232.127<br />
+Feb 14 09:37:17 dicken-server sshd[21617]: pam_unix(sshd:auth): check pass; user unknown<br />
+Feb 14 09:37:17 dicken-server sshd[21617]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser=<br />
+rhost=211.172.232.127</p>
+<p>尝试使用jack、christophe等常见的用户名登录。<br />
+用户名千万不能取常见的名字，千千万万密码不要和用户名相同。不要小瞧基本的安全常识啊。<br />
+昨天到朋友的机子上用网上银行，还被别人嘲笑过分保守使用硬件安全保障──u盾。你只密码验证是方便，别人植个记录键盘的木马，钱就归别人了。<br />
+这个互联网还是很危险的，小朋友们要注意啊。</p>

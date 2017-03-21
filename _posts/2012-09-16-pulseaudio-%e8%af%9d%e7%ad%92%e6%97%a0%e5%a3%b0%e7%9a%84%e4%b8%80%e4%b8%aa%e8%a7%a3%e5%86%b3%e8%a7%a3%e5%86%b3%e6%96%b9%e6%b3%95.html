@@ -1,0 +1,24 @@
+---
+layout: post
+title: pulseaudio 话筒无声的一个解决解决方法
+date: 2012-09-16 15:13:06.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>pulseaudio一度正常，但是突然某天在gnome的sound设置里看不到话筒硬件，话筒也无声<br />
+也许给误打误撞搜进来的人有些帮助</p>
+<p>解决方法是删除自己Home目录下的配置文件<br />
+rm -rf ~/.pulse<br />
+sudo killall pulseaudio</p>

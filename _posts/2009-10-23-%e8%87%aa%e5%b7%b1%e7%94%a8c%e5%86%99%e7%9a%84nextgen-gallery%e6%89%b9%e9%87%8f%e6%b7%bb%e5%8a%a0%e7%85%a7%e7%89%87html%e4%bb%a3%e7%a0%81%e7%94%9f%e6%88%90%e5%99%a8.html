@@ -1,0 +1,47 @@
+---
+layout: post
+title: 自己用C++写的NextGEN Gallery批量添加照片html代码生成器
+date: 2009-10-23 23:51:22.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Programming
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>wordpress的图片功能太弱，NextGEN Gallery插件很强大，可是也不能批量插入图片<br />
+要一下次插入个20来张图片鼠标也点累死了<br />
+先上传图片NextGEN Gallery图集，缓冲完缩略图<br />
+in.txt文件第一行为新添加的图集绝对路径，此后每行为文件名<br />
+out.txt输出html代码（居中，缩略图）<br />
+接下来就是复制粘贴啦<br />
+c++代码如下：<br />
+<!--more--><br />
+#include<br />
+#include<br />
+#include<br />
+using namespace std;<br />
+int main(int argc, char *argv[])<br />
+{<br />
+string path,image;<br />
+ofstream fout;<br />
+ifstream fin;<br />
+fout.open("output.txt");<br />
+fin.open("in.txt");<br />
+fin &amp;gt;&amp;gt; path;<br />
+while (fin &amp;gt;&amp;gt; image){<br />
+fout &amp;lt;&amp;lt; "&lt;a href="&amp;quot;&amp;lt;br &amp;gt;&amp;lt;/a&amp;gt;          &amp;lt;&amp;lt; path &amp;lt;&amp;lt; image&amp;lt;br /&amp;gt;          &amp;lt;&amp;lt; &amp;quot;"&gt;&lt;img src="&amp;quot;&amp;lt;br /&amp;gt;          &amp;lt;&amp;lt; path &amp;lt;&amp;lt; &amp;quot;thumbs/thumbs_&amp;quot;&amp;lt;br /&amp;gt;          &amp;lt;&amp;lt; image&amp;lt;br /&amp;gt;          &amp;lt;&amp;lt; &amp;quot;" alt="                               " /&gt;<br />
+&amp;lt;&amp;lt; " class='ngg-singlepic ngg-center' /&amp;gt;&lt;/a&gt;"<br />
+&amp;lt;&amp;lt; endl;<br />
+}<br />
+system("PAUSE");<br />
+return EXIT_SUCCESS;<br />
+}</p>

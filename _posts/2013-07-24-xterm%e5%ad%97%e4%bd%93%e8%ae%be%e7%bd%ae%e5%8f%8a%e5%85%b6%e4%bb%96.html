@@ -1,0 +1,34 @@
+---
+layout: post
+title: xterm字体设置及其他
+date: 2013-07-24 22:47:23.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>在~/.Xresources里添加</p>
+<p>XTerm*Background: black<br />
+XTerm*Foreground: green<br />
+XTerm*locale: true<br />
+XTerm*utf8Title: true<br />
+XTerm.cjkWidth:true</p>
+<p>XTerm*faceName: DejaVu Sans Mono<br />
+XTerm*faceSize: 12</p>
+<p>由上到下分别是背景色前景色，一些对utf8和其他语言的支持<br />
+最后两行是字体和大小，酌情修改</p>
+<p>在./.xinitrc里添加<br />
+xrdb -merge ~/.Xresources<br />
+用以导入设置</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

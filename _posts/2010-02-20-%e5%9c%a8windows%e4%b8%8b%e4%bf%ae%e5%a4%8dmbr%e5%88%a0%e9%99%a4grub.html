@@ -1,0 +1,24 @@
+---
+layout: post
+title: 在windows下修复mbr删除Grub
+date: 2010-02-20 21:42:37.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Windows
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>不需要任何windows安装盘启动盘，在网上找一个叫MbrFix.exe的小程序<br />
+然后以管理员身份运行<br />
+MbrFix /drive 0 fixmbr /yes<br />
+搞定</p>
+<p>(唉，debian5.0 amd64 在我的y450 tsi上竟然不能引导……)</p>

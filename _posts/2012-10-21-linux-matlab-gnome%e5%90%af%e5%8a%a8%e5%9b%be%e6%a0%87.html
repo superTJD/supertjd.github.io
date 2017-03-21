@@ -1,0 +1,37 @@
+---
+layout: post
+title: linux matlab gnome启动图标
+date: 2012-10-21 03:22:18.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>由于学校有Matlab的license server，在学校网段内可以使用。于是乎人生第一次在自己的PC上用上了正版的Matlab。<br />
+Linux版的安装后在gnome里没有图标，gnome3的快速启动搜索 也无法使用，以2012b版为例，解决方法如下：</p>
+<p>从<a href="https://65fb2758-a-62cb3a1a-s-sites.googlegroups.com/site/maltekoester/matlab_logo.svg?attachauth=ANoY7cr2qp6W86Agzp-9EvcW_spJ5aG9PC2_TNIFBjDx1qETm1ZO9FoIp9kJFXLMVFIWxpic2Fa_A2Y0HmbTy0FZwoNnfZTYWvlbIt1hUwybqetN4CXpfAm35WI3YjhOtwqM0hL29wG9BB7AQu0qtcBoJpGPQF8EqlzCJsBVNDiEDTI9779wWv2Ij5u4peGt1rAhlirG5HgSkklOryMjy2_T6pZfy9z71g%3D%3D&amp;attredirects=0">这里</a>找到一个Matlab的矢量图标，文件名为matlab_logo.svg，将其复制到<br />
+/usr/local/MATLAB/R2012b/下</p>
+<p>在/usr/share/applications下创建matlab.desktop文件，编辑内容为：</p>
+<p>Exec=/usr/local/MATLAB/R2012b/bin/matlab -desktop<br />
+Version=2012b<br />
+Name=Matlab<br />
+GenericName=Mathworks Matlab<br />
+Comment=Matlab<br />
+Icon=/usr/local/MATLAB/R2012b/matlab_logo.svg<br />
+StartupNotify=true<br />
+Terminal=false<br />
+Type=Application<br />
+Categories=<br />
+MimeType=</p>
+<p>重启GNOME后可以使用，重启GNOME3的GNOME shell方法为Alt+F2，输入r，执行。</p>
+<p>&nbsp;</p>

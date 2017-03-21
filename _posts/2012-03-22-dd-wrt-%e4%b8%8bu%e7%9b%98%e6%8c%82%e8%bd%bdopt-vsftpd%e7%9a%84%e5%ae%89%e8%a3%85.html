@@ -1,0 +1,57 @@
+---
+layout: post
+title: dd-wrt 下U盘挂载/opt vsftpd的安装
+date: 2012-03-22 23:38:31.000000000 +01:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+- Technology
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>dd-wrt官方的wiki是在/jffs下安装的，对于u盘挂载在/opt，使用ipkg-opt安装包的环境，需要一些改写。</p>
+<p>安装vsftpd到/opt<br />
+ipkg-opt install vsftpd</p>
+<p>创建安全空目录<br />
+mkdir /opt/var/run/vsftpd</p>
+<p>编辑配置文件<br />
+vi /opt/etc/vsftpd.conf</p>
+<p>如下配置文件是只使用单一root用户的参考，具体的配置可以详查vsftpd的手册<br />
+secure_chroot_dir=/opt/var/run/vsftpd<br />
+ftp_username=root<br />
+nopriv_user=root<br />
+background=YES<br />
+listen=YES<br />
+anonymous_enable=NO<br />
+local_enable=YES<br />
+write_enable=YES<br />
+local_umask=022<br />
+check_shell=NO<br />
+dirmessage_enable=YES<br />
+ftpd_banner=ROUTER</p>
+<p>依照官方wiki，需要建立nobody用户，但是貌似我没建立依然可以用<br />
+没有使用/jffs 命令改写如下<br />
+echo "nobody:Password:0:0:User,,,:/tmp/root:/bin/sh" &gt;&gt; /tmp/etc/passwd</p>
+<p>编辑启动脚本<br />
+这里官方wiki略显粗糙，我也略改能用<br />
+由于dd-wrt并非使用标准libc而是uClibc所以得使用uClibc来运行vsftpd<br />
+先请去/opt/libc下看看libuClibc的版本号，我的是0.9.28.0而不是官方官方wiki的0.9.27.0如果没有libuClibc，自行安装<br />
+把如下的脚本保存到一个文件中，例如/opt/start<br />
+export LD_PRELOAD='/opt/lib/libuClibc-0.9.28.so'<br />
+/opt/sbin/vsftpd /opt/etc/vsftpd.conf<br />
+unset LD_PRELOAD<br />
+env &gt; /dev/null<br />
+保存后给此文件加上执行属性<br />
+chmod +x /opt/start</p>
+<p>在/opt下执行 ./start 来启动vsftpd 太粗糙了啊，竟然连/opt/etc/init.d/vsftpd也没有啊</p>
+<p>Reference：<br />
+1. 官方wiki：<a href="http://www.dd-wrt.com/wiki/index.php/Vsftpd">http://www.dd-wrt.com/wiki/index.php/Vsftpd</a></p>

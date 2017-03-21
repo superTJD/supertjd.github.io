@@ -1,0 +1,50 @@
+---
+layout: post
+title: rtorrent通过代理链接tracker
+date: 2013-07-10 21:20:30.000000000 +02:00
+type: post
+published: true
+status: publish
+categories:
+- Linux
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: liqiankun2010@gmail.com
+  display_name: 老李
+  first_name: ''
+  last_name: ''
+---
+<p>从几天前开始就大量红种，看了一眼发现所有非https的tracker都无法连接上了，想来大概是ISP做了些包的过滤以屏蔽BT的使用。手动把一些CHDBits的tracker改成https后觉得需要一个治本的办法，何况 一些tracker无https可用。一开始想到用tsocks，但是tsocks会将所有数据都走代理，不仅仅是与tracker的通讯，还有与peer之间的数据交换，并不是个经济的方法。</p>
+<p>rtorrent的配置文件.rtorrent.rc中的选项:</p>
+<p>http_proxy                         #http代理地址，提供与tracker通讯<br />
+proxy_address                  #其他协议的代理地址<br />
+#貌似第二个选项会有问题，参考<a href="http://selectech.blogspot.de/2012/04/using-rtorrent-through-proxy.html">这里</a></p>
+<p>ip                                             # The ip address reported to the tracker.</p>
+<p>解决方案<br />
+用privoxy套接ssh隧道的socket5代理，建立个本机的http代理，配置rtorrent使用此http代理，并设置rtorrent向tracker发送本机实际IP，而非代理的IP</p>
+<p>1.建立ssh隧道</p>
+<p>ssh -D 1080 -f -N user@remotehost<br />
+端口号1080，为所创建的sockets5代理的端口</p>
+<p>2. 安装配置privoxy<br />
+sudo apt-get install privoxy<br />
+sudo vi /etc/privoxy/config</p>
+<p>添加：<br />
+forward-socks5 / 127.0.0.1:1080 .<br />
+注意后面的点不可少，表示所有http都用本机的sockets5代理转发</p>
+<p>重启privoxy使配置生效<br />
+sudo /etc/init.d/privoxy restart<br />
+则默认在8118端口建立http代理</p>
+<p>3.配置rtorrent<br />
+sudo  vi ~/.rtorrent.rc<br />
+添加：<br />
+http_proxy = 127.0.0.1:8118<br />
+ip = 本机的IP</p>
+<p>重启rtorrent，完工<br />
+种子都绿了</p>
+<p>参考：<br />
+主要是关于privoxy的一些中文博客</p>
+<p><a href="http://www.cnblogs.com/another-wheel/archive/2011/11/16/setup-http-proxy-via-socks-and-privoxy.html">http://www.cnblogs.com/another-wheel/archive/2011/11/16/setup-http-proxy-via-socks-and-privoxy.html</a></p>
+<p><a href="http://qixinglu.com/post/powerful_filter_proxy_privoxy.html">http://qixinglu.com/post/powerful_filter_proxy_privoxy.html</a></p>
